@@ -53,10 +53,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var markers = [];
 
-positionMarkers.forEach( cord => {
-    var marker = L.marker([cord.latitude, cord.longitude])
-    markers.push(marker)
-});
-
+if(positionMarkers){
+    positionMarkers.forEach( cord => {
+        var marker = L.marker([cord.latitude, cord.longitude])
+        markers.push(marker)
+    });
+}
 var featureGroup = L.featureGroup(markers).addTo(map)
 

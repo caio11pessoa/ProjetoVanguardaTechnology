@@ -74,7 +74,12 @@
         include_once("Funcoes\GET.php");
     ?>
     <script>
-        var positionMarkers = <?php echo json_encode($positionMarkers); ?>;//passando o valor da variável em php para o JavaScript
+        if(<?php echo json_encode($positionMarkers); ?>){
+            var positionMarkers = <?php echo json_encode($positionMarkers); ?>;//passando o valor da variável em php para o JavaScript
+        }else {
+            var positionMarkers = 0
+            alert("Houve um erro ao tentar se conectar com os dados do endpoint");
+        }  
     </script>
     <script src="Funcoes\main.js"></script>
 </body>
