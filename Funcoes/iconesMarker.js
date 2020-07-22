@@ -8,8 +8,8 @@ function retornarIcon() {
 
         }),
         shieldGrand: L.icon({
-            iconUrl: 'Imagens/shield.svg',
-            iconSize: [32, 37],
+            iconUrl: 'Imagens/shieldBlue.svg',
+            iconSize: [42, 47],
             iconAnchor: [16, 37],//metade de 32 e 37
             popupAnchor: [0, -30]
 
@@ -22,7 +22,7 @@ function retornarIcon() {
 
         }),
         markerGrande : L.icon({
-            iconUrl: 'imagens/marker.svg',
+            iconUrl: 'imagens/markerAzul.svg',
             iconSize: [42, 47],
             iconAnchor: [16, 37],
             popupAnchor: [0, -30]
