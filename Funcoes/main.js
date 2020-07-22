@@ -56,9 +56,13 @@ function esconder(botao, condicao) {
 }
 
 function adicionar(e) {
-    console.log(arrayButtons[1].condicao)
     if (!arrayButtons[1].condicao) {
         featureGroup.addLayer(L.marker(e.latlng))
+    }
+}
+function apagar(e) {
+    if (!arrayButtons[2].condicao) {
+        featureGroup.removeLayer(e.layer)
     }
 }
 
@@ -78,10 +82,11 @@ if (positionMarkers) {
         markers.push(marker)
     });
 }
-var featureGroup = L.featureGroup(markers).addTo(map)
+var featureGroup = L.featureGroup(markers).on('click', e => {
+    apagar(e);
+}).addTo(map)
 
 map.on('click', function (e) {
     adicionar(e);
-
 })
 
