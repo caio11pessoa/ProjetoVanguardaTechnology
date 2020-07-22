@@ -22,7 +22,7 @@ function retornarIcon() {
 
         }),
         markerGrande : L.icon({
-            iconUrl: 'imagens/markerAzul.svg',
+            iconUrl: 'Imagens/markerAzul.svg',
             iconSize: [42, 47],
             iconAnchor: [16, 37],
             popupAnchor: [0, -30]
