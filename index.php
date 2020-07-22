@@ -69,7 +69,9 @@
             CAIO A. PESSOA
         </footer>
     </div>
-
+    <?php
+        include_once("Funcoes\GET.php");
+    ?>
     <script src="Funcoes\main.js"></script>
 </body>
 
