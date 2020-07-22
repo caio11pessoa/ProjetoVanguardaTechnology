@@ -44,7 +44,7 @@ html, body{
     text-shadow: 2px 2px 4px #000000;
 }
 
-.map{
+#map{
     width: 90%;
     height: 70%;
     max-width: 900px;
