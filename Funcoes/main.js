@@ -58,3 +58,5 @@ positionMarkers.forEach( cord => {
     markers.push(marker)
 });
 
+var featureGroup = L.featureGroup(markers).addTo(map)
+
