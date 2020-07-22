@@ -32,7 +32,7 @@ function valida(validacao) {
         validacao.Button.style.left = '25px';
         esconder(validacao, validacao.condicao);
 
-        
+
 
     } else {
         validacao.condicao = true
@@ -49,9 +49,16 @@ arrayButtons.forEach(element => {
     })
 })
 
-function esconder (botao, condicao){
-    if(botao === arrayButtons[0]){
+function esconder(botao, condicao) {
+    if (botao === arrayButtons[0]) {
         condicao === false ? map.removeLayer(featureGroup) : featureGroup.addTo(map);
+    }
+}
+
+function adicionar(e) {
+    console.log(arrayButtons[1].condicao)
+    if (!arrayButtons[1].condicao) {
+        featureGroup.addLayer(L.marker(e.latlng))
     }
 }
 
@@ -65,13 +72,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var markers = [];
 
-if(positionMarkers){
-    positionMarkers.forEach( cord => {
+if (positionMarkers) {
+    positionMarkers.forEach(cord => {
         var marker = L.marker([cord.latitude, cord.longitude])
         markers.push(marker)
     });
 }
 var featureGroup = L.featureGroup(markers).addTo(map)
 
+map.on('click', function (e) {
+    adicionar(e);
 
+})
 
