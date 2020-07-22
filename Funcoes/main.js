@@ -90,3 +90,7 @@ map.on('click', function (e) {
     adicionar(e);
 })
 
+map.on("moveend", function (e) {
+    $('#lat-long').val(map.getCenter().lat.toFixed(3) + ' , ' + map.getCenter().lng.toFixed(3));
+});
+
