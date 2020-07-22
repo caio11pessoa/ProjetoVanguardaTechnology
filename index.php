@@ -69,9 +69,13 @@
             CAIO A. PESSOA
         </footer>
     </div>
+    
     <?php
         include_once("Funcoes\GET.php");
     ?>
+    <script>
+        var groupMarkers = <?php echo json_encode($positionMarkers); ?>;//passando o valor da variável em php para o JavaScript
+    </script>
     <script src="Funcoes\main.js"></script>
 </body>
 
