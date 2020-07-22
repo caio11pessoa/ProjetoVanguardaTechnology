@@ -13,7 +13,7 @@ const arrayButtons = [
         Toggle: document.getElementById('add'),
         Label: document.getElementById('toggle2'),
         Button: document.getElementById('button2'),
-        condica: true
+        condicao: true
     },
     {
         Toggle: document.getElementById('clear'),
@@ -24,15 +24,21 @@ const arrayButtons = [
     }
 ]
 
+
 function valida(validacao) {
     if (validacao.condicao) {
-        validacao.condicao = false
-        validacao.Label.style.backgroundColor = "#55d069"
-        validacao.Button.style.left = '25px'
+        validacao.condicao = false;
+        validacao.Label.style.backgroundColor = "#55d069";
+        validacao.Button.style.left = '25px';
+        esconder(validacao, validacao.condicao);
+
+        
+
     } else {
         validacao.condicao = true
-        validacao.Label.style.backgroundColor = "#900"
-        validacao.Button.style.left = '3px'
+        validacao.Label.style.backgroundColor = "#900";
+        validacao.Button.style.left = '3px';
+        esconder(validacao, validacao.condicao);
     }
 
 }
@@ -42,6 +48,12 @@ arrayButtons.forEach(element => {
         valida(element)
     })
 })
+
+function esconder (botao, condicao){
+    if(botao === arrayButtons[0]){
+        condicao === false ? map.removeLayer(featureGroup) : featureGroup.addTo(map);
+    }
+}
 
 var map = L.map('map').setView([-3.7197137254680808, -38.529790341854095], 13);
 
@@ -60,4 +72,6 @@ if(positionMarkers){
     });
 }
 var featureGroup = L.featureGroup(markers).addTo(map)
+
+
 
