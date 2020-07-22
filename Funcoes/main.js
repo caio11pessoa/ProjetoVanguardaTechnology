@@ -51,3 +51,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     id: "mapbox.streets"
 }).addTo(map);
 
+var markers = [];
+
+positionMarkers.forEach( cord => {
+    var marker = L.marker([cord.latitude, cord.longitude])
+    markers.push(marker)
+});
+
