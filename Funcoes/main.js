@@ -1,5 +1,6 @@
 
-//Criando o mapa
+/*             Mapa Markers
+Caio de Almeida Pessoa 22/07/2019 Versão 1*/
 
 var map = L.map('map').setView([-3.7197137254680808, -38.529790341854095], 13);
 
@@ -66,22 +67,20 @@ function esconder(botao, condicao) {
     }
 }
 
-
-
-
-map.on('click', e => { adicionar(e); })//evento que ocorre quando o mapa sofre um click
+map.on('click', e => { adicionar(e); })//clique no mapa
 
 function adicionar(e) {
     if (!arrayButtons[1].condicao) {//Testa se o botao de adicionar está ativado ou desativado
-        var marker = L.marker(e.latlng, { icon: icones.marker })//criando os markers que o usuário adicionou
-            .on('mousemove', e => { e.target.setIcon(icones.markerGrande); })//evento que quando o mouse passa por cima do marker ele fica maior
-            .on('mouseout', e => { e.target.setIcon(icones.marker); });//evento que quando tira o mouse de cima o marker fica menor
-        featureGroup.addLayer(marker);
+        var marker = L.marker(e.latlng, { icon: icones.marker })//cria os markers que o usuário adicionou
+            .on('mousemove', e => { e.target.setIcon(icones.markerGrande); })//quando o mouse passa por cima do marker ele fica maior
+            .on('mouseout', e => { e.target.setIcon(icones.marker); })//quando tira o mouse de cima o marker volta ao normal
+            .bindPopup("latitude: "+e.latlng.lat.toFixed(3)+"  longitude: "+e.latlng.lng.toFixed(3));//Popup que aparece quando clica em cima do market
+            featureGroup.addLayer(marker);
     }
 }
 
 function apagar(e) {
-    if (!arrayButtons[2].condicao) {//teste se o botao de apagar está ativado
+    if (!arrayButtons[2].condicao) {//testa se o botao de apagar está ativado
         featureGroup.removeLayer(e.layer)
     }
 }
@@ -90,10 +89,11 @@ var markers = [];
 
 if (positionMarkers) {
     positionMarkers.forEach(cord => {
-        var marker = L.marker([cord.latitude, cord.longitude], { icon: icones.shieldPequeno })//criando os markers que vieram do endpoint
-            .on('mousemove', e => { e.target.setIcon(icones.shieldGrand); })//evento que quando o mouse passa por cima do marker ele fica maior
-            .on('mouseout', e => { e.target.setIcon(icones.shieldPequeno); });//evento que quando tira o mouse de cima o marker fica menor
-        markers.push(marker)
+        var marker = L.marker([cord.latitude, cord.longitude], { icon: icones.shieldPequeno })//cria os markers que vieram do endpoint
+            .on('mousemove', e => { e.target.setIcon(icones.shieldGrand); })//quando o mouse passa por cima do marker ele fica maior
+            .on('mouseout', e => { e.target.setIcon(icones.shieldPequeno); })//quando tira o mouse de cima o marker fica menor
+            .bindPopup("Latitude: "+parseFloat(cord.latitude).toFixed(3) +"  Longitude: "+ parseFloat(cord.longitude).toFixed(3));        
+            markers.push(marker)
     });
 }
 
@@ -103,9 +103,9 @@ var featureGroup = L.featureGroup(markers)
 
 //evento para mostrar a latitude e longitude no quadrinho em baixo do mapa
 map.on("moveend", e => {
-    $('#lat-long').val(map.getCenter().lat.toFixed(3) + ' , ' + map.getCenter().lng.toFixed(3));
-});//utilizo JQuery para facilitar na criação do evento
+    $('#lat-long').val(map.getCenter().lat.toFixed(6) + ' , ' + map.getCenter().lng.toFixed(6));
+});//JQuery para criação do evento
 
-//função que quando o mapa é iniciado ele ajusta a posição para um local que possa visualizar todos os markers
+//quando o mapa é iniciado a posição é ajustada para um local que possa visualizar todos os markers
 map.fitBounds(featureGroup.getBounds(), { padding: [5, 5] });
 
