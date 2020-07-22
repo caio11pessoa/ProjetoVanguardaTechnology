@@ -79,7 +79,12 @@ var markers = [];
 
 if (positionMarkers) {
     positionMarkers.forEach(cord => {
-        var marker = L.marker([cord.latitude, cord.longitude], {icon: icones.shieldPequeno})
+        var marker = L.marker([cord.latitude, cord.longitude], {icon: icones.shieldPequeno}).on('mousemove', function (e) {
+            console.log(e);
+            e.target.setIcon(icones.shieldGrand);
+        }).on('mouseout', function (e) {
+            e.target.setIcon(icones.shieldPequeno);
+        });
         markers.push(marker)
     });
 }
