@@ -54,10 +54,11 @@ function esconder(botao, condicao) {
         condicao === false ? map.removeLayer(featureGroup) : featureGroup.addTo(map);
     }
 }
+var icones = retornarIcon()
 
 function adicionar(e) {
     if (!arrayButtons[1].condicao) {
-        featureGroup.addLayer(L.marker(e.latlng))
+        featureGroup.addLayer(L.marker(e.latlng, { icon: icones.marker}))
     }
 }
 function apagar(e) {
@@ -78,7 +79,7 @@ var markers = [];
 
 if (positionMarkers) {
     positionMarkers.forEach(cord => {
-        var marker = L.marker([cord.latitude, cord.longitude])
+        var marker = L.marker([cord.latitude, cord.longitude], {icon: icones.shieldPequeno})
         markers.push(marker)
     });
 }
@@ -95,6 +96,6 @@ map.on("moveend", function (e) {
 });
 
 map.fitBounds(featureGroup.getBounds(), {
-    padding: [10, 10]
+    padding: [5, 5]
 });
 

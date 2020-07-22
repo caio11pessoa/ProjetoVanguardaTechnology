@@ -74,6 +74,7 @@
     <?php
         include_once("Funcoes\GET.php");
     ?>
+    <script src = "Funcoes\iconesMarker.js"></script>
     <script>
         if(<?php echo json_encode($positionMarkers); ?>){
             var positionMarkers = <?php echo json_encode($positionMarkers); ?>;//passando o valor da variável em php para o JavaScript
