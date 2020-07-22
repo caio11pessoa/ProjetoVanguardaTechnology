@@ -58,7 +58,12 @@ var icones = retornarIcon()
 
 function adicionar(e) {
     if (!arrayButtons[1].condicao) {
-        featureGroup.addLayer(L.marker(e.latlng, { icon: icones.marker}))
+        var marker = L.marker(e.latlng, { icon: icones.marker }).on('mousemove', function (e) {
+                    e.target.setIcon(icones.markerGrande);
+                }).on('mouseout', function (e) {
+                    e.target.setIcon(icones.marker);
+                });
+        featureGroup.addLayer(marker)
     }
 }
 function apagar(e) {
@@ -79,12 +84,13 @@ var markers = [];
 
 if (positionMarkers) {
     positionMarkers.forEach(cord => {
-        var marker = L.marker([cord.latitude, cord.longitude], {icon: icones.shieldPequeno}).on('mousemove', function (e) {
-            console.log(e);
-            e.target.setIcon(icones.shieldGrand);
-        }).on('mouseout', function (e) {
-            e.target.setIcon(icones.shieldPequeno);
-        });
+        var marker = L.marker([cord.latitude, cord.longitude], { icon: icones.shieldPequeno })
+            .on('mousemove', function (e) {
+                e.target.setIcon(icones.shieldGrand);
+            })
+            .on('mouseout', function (e) {
+                e.target.setIcon(icones.shieldPequeno);
+            });
         markers.push(marker)
     });
 }
