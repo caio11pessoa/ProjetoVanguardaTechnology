@@ -76,7 +76,7 @@
     ?>
     <script src = "Funcoes\iconesMarker.js"></script>
     <script>
-        if(<?php echo json_encode($positionMarkers); ?>){
+        if(<?php echo json_encode($positionMarkers); ?> == 100){
             var positionMarkers = <?php echo json_encode($positionMarkers); ?>;//passando o valor da variável em php para o JavaScript
         }else {
             var positionMarkers = 0
